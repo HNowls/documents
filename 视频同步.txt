@@ -1,0 +1,6 @@
+dts: decoding time stamp
+pts: presentation time stamp
+
+电影的存放方式：
+    像MPEG使用了叫做B帧的方式；另外两帧叫做I帧和P帧。I帧包含某个特定图像的完整图像；P帧依赖于前面的I帧和P帧并且使用比较或者差分的方式来编码。B帧和P帧类似，B帧依赖于前面和后面的帧的信息。
+
