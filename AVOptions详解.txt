@@ -1,0 +1,52 @@
+typedef struct AVOption {
+        const char * name;
+        const char * help;
+        int offset;
+        enum AVOptionType type;
+        union {
+            int64_t i64;
+            double dbl;
+            const char * str;
+            AVRational q;
+        } default_val;
+        double min;
+        double max;
+        int flags;
+        const char * unit;
+} AVOption;
+
+1. name和help字段用于描述该option；
+2. offset 用于表示与本option对应的结构体成员在其结构体中的偏移。
+3. type 表示option的类型；
+4. default_val 表示保存本option中的值；
+5. min和max 用于表示保存在option中的一组范围的值；
+
+Functions:
+列举：
+    const AVOption * av_opt_find(void * obj, const char * name, const char * unit, 
+                                int opt_flags, int search_flags);
+    const AVOption * av_opt_find2(void * obj, const char * name, const char * unit,
+                                  int opt_flags, int search_flags, void ** target_obj);
+
+
+    const AVOption * av_opt_next(void * obj, const AVOption * prev);
+    void * av_opt_child_next(void * obj, void * prev);
+    const AVClass * av_opt_child_class_next(const AVClass * parent, const AVClass * prev);
+
+
+读取/写入：
+    int av_opt_set      (void * obj, const char * name, const char  *val, int search_flags);
+    int av_opt_set_int  (void * obj, const char * name, int64_t      val, int search_flags);
+    ......
+
+    int av_opt_get      (void * obj, const char * name, int search_flags, uint8_t   **  out_val);
+    int av_opt_get_int  (void * obj, const char * name, int search_flags, int64_t   *   out_val);
+    ......
+
+    void * av_opt_ptr   (const AVClass * avclass, void * obj, const char * name);
+
+
+范围值:
+    int av_opt_query_ranges(AVOptionRanges **, void * obj, const char * key, int flags);
+
+

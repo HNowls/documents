@@ -1,0 +1,9 @@
+DTS: decoding time stamp
+PTS: presentation time stamp
+
+"B" frames:
+    "I" frame contain a full image;
+    "P" frame depend upon previous I and P frames;
+    "B" frame depend upon information found in frames that are displayed both before and after them.
+
+

@@ -1,0 +1,20 @@
+1、将下面语句添加到vim的配置文件.vimrc中。
+
+if fileradable("cscope.out")
+    cs add csope.out
+elseif $CSCOPE_DB  != ""
+    cs add $CSCOPE_DB
+endif
+
+2、Cscope的功能通过它的子命令“find”来实现。
+
+cs find c|d|e|g|f|i|s|t name
+
+s：查找C代码符号
+g：查找本定义
+d：查找本函数调用的函数
+c：查找调用本函数的函数
+t：查找本字符串
+e：查找本egrep模式
+f：查找本文件
+i：查找包含本文件的文件

@@ -1,0 +1,25 @@
+enum AVSampleFormat {
+    AV_SAMPLE_FMT_NONE = -1,
+    AV_SAMPLE_FMT_U8,          ///< unsigned 8 bits
+    AV_SAMPLE_FMT_S16,         ///< signed 16 bits
+    AV_SAMPLE_FMT_S32,         ///< signed 32 bits
+    AV_SAMPLE_FMT_FLT,         ///< float
+    AV_SAMPLE_FMT_DBL,         ///< double
+
+    AV_SAMPLE_FMT_U8P,         ///< unsigned 8 bits, planar
+    AV_SAMPLE_FMT_S16P,        ///< signed 16 bits, planar
+    AV_SAMPLE_FMT_S32P,        ///< signed 32 bits, planar
+    AV_SAMPLE_FMT_FLTP,        ///< float, planar
+    AV_SAMPLE_FMT_DBLP,        ///< double, planar
+
+    AV_SAMPLE_FMT_NB           ///< Number of sample formats. DO NOT USE if linking dynamically
+};
+
+音频的采样：
+    PCM采样有单声道(mono)和立体声(stereo)之分，采用位数有8，16，24三类。
+    单声道采样常用的格式有：
+        AV_SAMPLE_FMT_U8, AV_SAMPLE_FMT_S16, AV_SAMPLE_FMT_S32
+    立体声采样常用的格式有：
+        AV_SAMPLE_FMT_U8P, AV_SAMPLE_FMT_S16P, AV_SAMPLE_FMT_S32P
+
+    对于末尾有P后缀的格式表示是平面格式(planar format)，没有P后缀的是压缩格式（packed format），两者的存储方式不一样。平面格式将不同的声道的数据分开存储，没种数据对应一个data[i]；压缩格式是左右声道交替存储的，它只占用了AVFrame结构体中的data[0]。
